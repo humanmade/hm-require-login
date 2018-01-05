@@ -17,7 +17,3 @@
 		</td>
 	</tr>
 </table>
-
-## Human Made User Redirect
-
-User must be logged in to access site.
