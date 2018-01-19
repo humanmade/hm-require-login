@@ -49,4 +49,4 @@ function redirect_user() {
 	}
 }
 
-add_action( 'init', __NAMESPACE__ . '\\redirect_user', 999 );
+add_action( 'template_redirect', __NAMESPACE__ . '\\redirect_user', 1 );
