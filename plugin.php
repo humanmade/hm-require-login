@@ -10,4 +10,6 @@ Author URI: http://hmn.md
 
 namespace HM\Require_Login;
 
+require_once __DIR__ . '/inc/namespace.php';
+
 add_action( 'init', __NAMESPACE__ . '\\redirect_user', 999 );
