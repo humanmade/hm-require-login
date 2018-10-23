@@ -1,6 +1,7 @@
 <?php
-namespace HM\Stack\Auth;
-use Aws\Ssm\SsmClient;
+
+namespace HM\Require_Login;
+
 function redirect_user() {
 	if ( ( defined( 'WP_CLI' ) && WP_CLI ) || defined( 'DOING_CRON' ) ) {
 		return;
@@ -48,5 +49,3 @@ function redirect_user() {
 		auth_redirect();
 	}
 }
-
-add_action( 'init', __NAMESPACE__ . '\\redirect_user', 999 );
