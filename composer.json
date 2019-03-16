@@ -1,0 +1,12 @@
+{
+	"name": "humanmade/require-login",
+	"description": "Script that requires users to be logged in view site.",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Human Made",
+			"email": "hello@humanmade.com"
+		}
+	]
+}
