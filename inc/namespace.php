@@ -30,7 +30,14 @@ function redirect_user() {
 		}
 	}
 
-	if ( ! empty( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] === 'wp-login.php' ) {
+	$page = $GLOBALS['pagenow'] ?? null;
+	$allowed = [
+		'wp-activate.php',
+		'wp-login.php',
+		'wp-signup.php',
+	];
+
+	if ( $page && in_array( $page, $allowed, true ) ) {
 		return;
 	}
 
