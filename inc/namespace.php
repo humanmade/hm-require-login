@@ -2,6 +2,29 @@
 
 namespace HM\Require_Login;
 
+function is_signup_or_activate() {
+	return in_array( basename( $_SERVER['PHP_SELF'] ), [
+		'wp-activate.php',
+		'wp-signup.php',
+	], true );
+}
+
+function modify_theme_root( $root ) {
+	if ( ! is_signup_or_activate() ) {
+		return $root;
+	}
+
+	return dirname( __DIR__ ) . '/themes/';
+}
+
+function modify_template( $template ) {
+	if ( ! is_signup_or_activate() ) {
+		return $template;
+	}
+
+	return 'basic';
+}
+
 function redirect_user() {
 	if ( ( defined( 'WP_CLI' ) && WP_CLI ) || defined( 'DOING_CRON' ) ) {
 		return;
@@ -34,6 +57,11 @@ function redirect_user() {
 	$allowed = [
 		'wp-login.php',
 	];
+
+	if ( is_multisite() && get_site_option( 'registration', 'none' ) !== 'none' ) {
+		$allowed[] = 'wp-signup.php';
+		$allowed[] = 'wp-activate.php';
+	}
 
 	/**
 	 * Filter pages allowed to pass through the login wall.
