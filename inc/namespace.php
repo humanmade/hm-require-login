@@ -33,7 +33,7 @@ function redirect_user() {
 	if ( ! empty( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] === 'wp-login.php' ) {
 		return;
 	}
-	
+
 	// Allow signups if enabled.
 	if ( ! empty( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] === 'wp-signup.php' ) {
 		if ( is_multisite() && get_site_option( 'registration', 'none' ) !== 'none' ) {
