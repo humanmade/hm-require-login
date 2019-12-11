@@ -32,10 +32,21 @@ function redirect_user() {
 
 	$page = $GLOBALS['pagenow'] ?? null;
 	$allowed = [
-		'wp-activate.php',
 		'wp-login.php',
-		'wp-signup.php',
 	];
+
+	/**
+	 * Filter pages allowed to pass through the login wall.
+	 *
+	 * Filters which pages are allowed through the login wall. "Pages" in this
+	 * sense is the value of the `$pagenow` global.
+	 *
+	 * By default, only the login form is allowed to pass through; to allow
+	 * registration on multisite, `wp-activate.php` and `wp-signup.php` need
+	 * to be allowed too. Note that these use your theme, so may leak private
+	 * theme data.
+	 */
+	$allowed = apply_filters( 'hm-require-login.allowed_pages', $allowed, $page );
 
 	if ( $page && in_array( $page, $allowed, true ) ) {
 		return;
