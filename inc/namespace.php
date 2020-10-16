@@ -57,6 +57,7 @@ function redirect_user() {
 				header( 'Access-Control-Allow-Credentials: true' );
 				header( 'Access-Control-Allow-Headers: Authorization, Content-Type' );
 				header( 'Access-Control-Allow-Expose-Headers: X-WP-Total, X-WP-TotalPages' );
+				exit;
 			}
 		}
 		http_response_code( 401 );
