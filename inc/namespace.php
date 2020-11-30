@@ -22,7 +22,7 @@ function modify_template( $template ) {
 		return $template;
 	}
 
-	return 'basic';
+	return 'require-login';
 }
 
 function redirect_user() {
