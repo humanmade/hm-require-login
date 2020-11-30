@@ -13,3 +13,7 @@ namespace HM\Require_Login;
 require_once __DIR__ . '/inc/namespace.php';
 
 add_action( 'init', __NAMESPACE__ . '\\redirect_user', 999 );
+
+// Avoid leaking data from theme header / footer.
+add_filter( 'theme_root', __NAMESPACE__ . '\\modify_theme_root', 999 );
+add_filter( 'template', __NAMESPACE__ . '\\modify_template', 999 );
