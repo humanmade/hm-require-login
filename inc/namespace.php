@@ -1,13 +1,23 @@
 <?php
+/**
+ * Require Login functions.
+ *
+ * phpcs:disable WordPress.NamingConventions.ValidHookName
+ */
 
 namespace HM\Require_Login;
 
+/**
+ * Redirects the user to login.
+ *
+ * @return void
+ */
 function redirect_user() {
 	if ( ( defined( 'WP_CLI' ) && WP_CLI ) || defined( 'DOING_CRON' ) ) {
 		return;
 	}
 
-	/*
+	/**
 	 * Allow access to the connect oauth auth
 	 * to go through.
 	 */
