@@ -28,6 +28,7 @@ function redirect_user() {
 	$page = $GLOBALS['pagenow'] ?? null;
 	$allowed = [
 		'wp-login.php',
+		'/robots.txt'
 	];
 
 	/**
@@ -44,6 +45,10 @@ function redirect_user() {
 	$allowed = apply_filters( 'hm-require-login.allowed_pages', $allowed, $page );
 
 	if ( $page && in_array( $page, $allowed, true ) ) {
+		return;
+	}
+
+	if ( $_SERVER['REQUEST_URI'] && in_array( $_SERVER['REQUEST_URI'] , $allowed, true ) ){
 		return;
 	}
 
