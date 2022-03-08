@@ -28,7 +28,7 @@ function redirect_user() {
 	$page = $GLOBALS['pagenow'] ?? null;
 	$allowed = [
 		'wp-login.php',
-		'/robots.txt'
+		'/robots.txt',
 	];
 
 	/**
@@ -48,7 +48,7 @@ function redirect_user() {
 		return;
 	}
 
-	if ( $_SERVER['REQUEST_URI'] && in_array( $_SERVER['REQUEST_URI'] , $allowed, true ) ){
+	if ( $_SERVER['REQUEST_URI'] && in_array( $_SERVER['REQUEST_URI'], $allowed, true ) ) {
 		add_filter( 'robots_txt', __NAMESPACE__ . '\\create_robots_file' );
 		return;
 	}
