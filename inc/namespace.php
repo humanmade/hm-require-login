@@ -49,6 +49,7 @@ function redirect_user() {
 	}
 
 	if ( $_SERVER['REQUEST_URI'] && in_array( $_SERVER['REQUEST_URI'] , $allowed, true ) ){
+		add_filter( 'robots_txt', __NAMESPACE__ . '\\create_robots_file' );
 		return;
 	}
 
@@ -80,4 +81,16 @@ function redirect_user() {
 	} else {
 		auth_redirect();
 	}
+}
+
+/**
+ * Filters the robots.txt output.
+ *
+ * @param string $output The robots.txt output.
+ * @return string The robots.txt output.
+ */
+function create_robots_file( string $output ) {
+	$output = "User-agent: *\n";
+	$output .= "Disallow: /\n";
+	return $output;
 }
