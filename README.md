@@ -5,7 +5,7 @@
             Script that requires users to be logged in view site.
 		</td>
 		<td align="right" width="20%">
-			Version 1.0
+			Version 1.0.5
 		</td>
 	</tr>
 	<tr>
