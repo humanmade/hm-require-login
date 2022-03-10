@@ -25,10 +25,17 @@ function redirect_user() {
 		return;
 	}
 
+	/**
+	 * Allow access to the robots.txt file.
+	 */
+	if ( ( $_SERVER['REQUEST_URI'] ?? '' ) === '/robots.txt' ) {
+		add_filter( 'robots_txt', __NAMESPACE__ . '\\create_robots_file' );
+		return;
+	}
+
 	$page = $GLOBALS['pagenow'] ?? null;
 	$allowed = [
 		'wp-login.php',
-		'/robots.txt',
 	];
 
 	/**
@@ -45,11 +52,6 @@ function redirect_user() {
 	$allowed = apply_filters( 'hm-require-login.allowed_pages', $allowed, $page );
 
 	if ( $page && in_array( $page, $allowed, true ) ) {
-		return;
-	}
-
-	if ( $_SERVER['REQUEST_URI'] && in_array( $_SERVER['REQUEST_URI'], $allowed, true ) ) {
-		add_filter( 'robots_txt', __NAMESPACE__ . '\\create_robots_file' );
 		return;
 	}
 
