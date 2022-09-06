@@ -81,8 +81,19 @@ function redirect_user() {
 		http_response_code( 401 );
 		exit;
 	} else {
+		add_filter( 'x_redirect_by', __NAMESPACE__ . '\\filter_x_redirect_by', 10, 0 );
 		auth_redirect();
+		remove_filter( 'x_redirect_by', __NAMESPACE__ . '\\filter_x_redirect_by', 10 );
 	}
+}
+
+/**
+ * Filters the X-Redirect-By header.
+ *
+ * @return string The application doing the redirect.
+ */
+function filter_x_redirect_by(): string {
+	return 'WordPress/Require Login';
 }
 
 /**
